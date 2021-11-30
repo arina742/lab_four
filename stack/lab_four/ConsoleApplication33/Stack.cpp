@@ -3,11 +3,10 @@
 #include "stdlib.h"
 #include <utility>
 
-    //добавление элемента в стек
     void Stack::Push(const int value,const int priority)
     {
-        Element* previous = top;//ссылка предыдущий элемент
-        Element* current = top;//сссылка на текущий элемент
+        Element* previous = top;//Г±Г±Г»Г«ГЄГ  ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
+        Element* current = top;//Г±Г±Г±Г»Г«ГЄГ  Г­Г  ГІГҐГЄГіГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
 
         Element* element_stack = new Element();
         element_stack->data = value;
@@ -30,11 +29,11 @@
                 previous = current;
                 current = current->next;
             }
-            if (current == nullptr) //последний элемент в стеке
+            if (current == nullptr) //ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ Гў Г±ГІГҐГЄГҐ
             {
                 previous->next = element_stack;
             }
-            else //найден элемент с меньшим приоритетом
+            else //Г­Г Г©Г¤ГҐГ­ ГЅГ«ГҐГ¬ГҐГ­ГІ Г± Г¬ГҐГ­ГјГёГЁГ¬ ГЇГ°ГЁГ®Г°ГЁГІГҐГІГ®Г¬
             {
                 previous->next = element_stack;
                 element_stack->next = current;
@@ -42,13 +41,13 @@
         }
     }
 
-    //выталкивание верхнего элемента из стека
+    //ГўГ»ГІГ Г«ГЄГЁГўГ Г­ГЁГҐ ГўГҐГ°ГµГ­ГҐГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГЁГ§ Г±ГІГҐГЄГ 
     void Stack::Pop()
     {
         Element value = *top;
         if (IsEmpty())
         {
-            std::cout << "\x1b[31mСтек пуст!\x1b[0m" << std::endl;
+            std::cout << "\x1b[31mГ‘ГІГҐГЄ ГЇГіГ±ГІ!\x1b[0m" << std::endl;
         }
         else
         {
@@ -57,45 +56,45 @@
         }
     }
 
-    //очищение стека
+    //Г®Г·ГЁГ№ГҐГ­ГЁГҐ Г±ГІГҐГЄГ 
     void Stack::Clear()
     {
         Stack::~Stack();
         top = nullptr;
-        std::cout << "\x1b[32mСтек очищен :)\x1b[0m" << std::endl;
+        std::cout << "\x1b[32mГ‘ГІГҐГЄ Г®Г·ГЁГ№ГҐГ­ :)\x1b[0m" << std::endl;
     }
 
-    //удаление элемента определенного приоритета
+
     void Stack::DeleteByPriority(const int priority)
     {
-        Element* previous = top;//ссылка предыдущий элемент
-        Element* current = top;//сссылка на текущий элемент
+        Element* previous = top;//Г±Г±Г»Г«ГЄГ  ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
+        Element* current = top;//Г±Г±Г±Г»Г«ГЄГ  Г­Г  ГІГҐГЄГіГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
 
-        if (current->priority == priority && current->next == nullptr) //только один элемент в стеке
+        if (current->priority == priority && current->next == nullptr) //ГІГ®Г«ГјГЄГ® Г®Г¤ГЁГ­ ГЅГ«ГҐГ¬ГҐГ­ГІ Гў Г±ГІГҐГЄГҐ
         {
             top = nullptr;
         }
         else
         {
-            while (current != nullptr && current->priority != priority)//перебираем элементы стека
+            while (current != nullptr && current->priority != priority)//ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГҐГЄГ 
             {
                 previous = current;
                 current = current->next;
             }
 
-            if (current->priority == priority && current == top && previous == top )//найден элемент с нужным приоритетом в начале стека
+            if (current->priority == priority && current == top && previous == top )//Г­Г Г©Г¤ГҐГ­ ГЅГ«ГҐГ¬ГҐГ­ГІ Г± Г­ГіГ¦Г­Г»Г¬ ГЇГ°ГЁГ®Г°ГЁГІГҐГІГ®Г¬ Гў Г­Г Г·Г Г«ГҐ Г±ГІГҐГЄГ 
             {
                 top = current->next;
                 delete current;
             }
 
-            if (current->priority == priority && current->next != nullptr && current != top)//найден элемент с нужным приоритетом в середине стека
+            if (current->priority == priority && current->next != nullptr && current != top)//Г­Г Г©Г¤ГҐГ­ ГЅГ«ГҐГ¬ГҐГ­ГІ Г± Г­ГіГ¦Г­Г»Г¬ ГЇГ°ГЁГ®Г°ГЁГІГҐГІГ®Г¬ Гў Г±ГҐГ°ГҐГ¤ГЁГ­ГҐ Г±ГІГҐГЄГ 
             {
                 previous->next = current->next;
                 delete current;
             }
 
-            if (current->next == nullptr && current->priority == priority) //последний элемент в стеке
+            if (current->next == nullptr && current->priority == priority) //ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ Гў Г±ГІГҐГЄГҐ
             {
                 previous->next = nullptr;
                 delete current;
@@ -103,23 +102,23 @@
         }
     }
 
-    //проверка стека на пустоту
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГІГҐГЄГ  Г­Г  ГЇГіГ±ГІГ®ГІГі
     bool Stack::IsEmpty()
     {
         Element* value = top;
         if (value == nullptr)
         {
-            return true; //стек пуст
+            return true; //Г±ГІГҐГЄ ГЇГіГ±ГІ
         }
-            return false; //стек пуст
+            return false; //Г±ГІГҐГЄ ГЇГіГ±ГІ
     }
 
-    //проверка нахождения элемента в стеке
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГї ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў Г±ГІГҐГЄГҐ
     bool Stack::IsElementHere(const int data, const int priority)
     {
         Element* element_stack = top;
 
-            while (element_stack != nullptr)//перебираем элементы стека
+            while (element_stack != nullptr)//ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГҐГЄГ 
             {
                 if(element_stack->priority == priority && element_stack->data == data)
                 {
