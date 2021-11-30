@@ -7,7 +7,7 @@ private:
     struct Element
     {
         int data;
-        Element* next; //указатель на следующий элемент
+        Element* next; //ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
         int priority;
         Element()
         {
@@ -24,13 +24,13 @@ private:
     Element* top = nullptr;
 
 public:
-    //конструктор
+    //ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
     Stack()
     {
 
     };
 
-    //конструктор копирования
+    
     Stack(const Stack& stack)
     {
         Element* element = stack.top;
@@ -46,36 +46,36 @@ public:
         delete top;
     }
 
-    //добавление элемента в стек
+    //Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў Г±ГІГҐГЄ
     void Push(const int value, const int priority);
 
-    //выталкивание верхнего элемента из стека
+    //ГўГ»ГІГ Г«ГЄГЁГўГ Г­ГЁГҐ ГўГҐГ°ГµГ­ГҐГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГЁГ§ Г±ГІГҐГЄГ 
     void Pop();
 
-    //очищение стека
+    //Г®Г·ГЁГ№ГҐГ­ГЁГҐ Г±ГІГҐГЄГ 
     void Clear();
 
-    //удаление элемента определенного приоритета
+    //ГіГ¤Г Г«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ  Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г­Г®ГЈГ® ГЇГ°ГЁГ®Г°ГЁГІГҐГІГ 
     void DeleteByPriority(const int priority);
 
-    //проверка стека на пустоту
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГІГҐГЄГ  Г­Г  ГЇГіГ±ГІГ®ГІГі
     bool IsEmpty();
 
-    //проверка нахождения элемента в стеке
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГї ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў Г±ГІГҐГЄГҐ
     bool IsElementHere(const int value, const int data);
 
-    //пересечение стеков
+    //ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГҐ Г±ГІГҐГЄГ®Гў
     friend Stack operator+(Stack& stack_1, Stack& stack_2)
     {
         Stack stack_3;
-        Element* element_stack_1 = stack_1.top;//сссылка на текущий элемент
+        Element* element_stack_1 = stack_1.top;//Г±Г±Г±Г»Г«ГЄГ  Г­Г  ГІГҐГЄГіГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
         Element* element_stack_2 = stack_2.top; 
-        while (element_stack_1 != nullptr)//перебираем элементы стека
+        while (element_stack_1 != nullptr)//ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГҐГЄГ 
         {
             stack_3.Push(element_stack_1->data, element_stack_1->priority);
             element_stack_1 = element_stack_1->next;
         }
-        while (element_stack_2 != nullptr)//перебираем элементы стека
+        while (element_stack_2 != nullptr)//ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГҐГЄГ 
         {
             stack_3.Push(element_stack_2->data, element_stack_2->priority);
             element_stack_2 = element_stack_2->next;
@@ -83,12 +83,12 @@ public:
         return stack_3;
     }
 
-    //объединение стеков
+    //Г®ГЎГєГҐГ¤ГЁГ­ГҐГ­ГЁГҐ Г±ГІГҐГЄГ®Гў
     friend Stack operator*(Stack& stack_1, Stack& stack_2)
     {
         Stack stack_3;
-        Element* element_stack_1 = stack_1.top;//сссылка на текущий элемент
-        while (element_stack_1 != nullptr)//перебираем элементы стека
+        Element* element_stack_1 = stack_1.top;//Г±Г±Г±Г»Г«ГЄГ  Г­Г  ГІГҐГЄГіГ№ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
+        while (element_stack_1 != nullptr)//ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГҐГЄГ 
         {
             if (stack_2.IsElementHere(element_stack_1->data, element_stack_1->priority))
             {
@@ -99,13 +99,13 @@ public:
         return stack_3;
     }
 
-    //вывод стека
+    //ГўГ»ГўГ®Г¤ Г±ГІГҐГЄГ 
     friend std::ostream& operator<<(std::ostream& out, const Stack& stack)
     {
         Element* element_stack = stack.top;
         if (element_stack == nullptr)
         {
-            out << "Стек пуст!" << std::endl;
+            out << "Г‘ГІГҐГЄ ГЇГіГ±ГІ!" << std::endl;
         }
         else
         {
